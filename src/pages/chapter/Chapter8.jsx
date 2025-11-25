@@ -2,6 +2,7 @@
 // Emotional Intelligence – simple English, portfolio style
 
 import React from "react";
+import eiBanner from "../../assets/ei.jpg";
 
 const chips = [
   "Emotions",
@@ -15,8 +16,8 @@ const chips = [
 
 function Chip({ label }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-medium border-emerald-200 bg-emerald-50 text-emerald-900">
-      <span className="h-2 w-2 rounded-full bg-emerald-500" />
+    <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-medium border-emerald-500 bg-emerald-900/60 text-emerald-50">
+      <span className="h-2 w-2 rounded-full bg-emerald-300" />
       {label}
     </span>
   );
@@ -24,32 +25,41 @@ function Chip({ label }) {
 
 function SectionCard({ title, tone = "emerald", children }) {
   const tones = {
-    emerald: { wrap: "border-emerald-200 bg-emerald-50", title: "text-emerald-900" },
-    cyan: { wrap: "border-cyan-200 bg-cyan-50", title: "text-cyan-900" },
-    amber: { wrap: "border-amber-200 bg-amber-50", title: "text-amber-900" },
-    slate: { wrap: "border-slate-200 bg-white", title: "text-slate-900" },
-    violet: { wrap: "border-violet-200 bg-violet-50", title: "text-violet-900" },
+    emerald: { wrap: "border-emerald-500 bg-emerald-900/30", title: "text-emerald-100" },
+    cyan: { wrap: "border-cyan-500 bg-cyan-900/30", title: "text-cyan-100" },
+    amber: { wrap: "border-amber-500 bg-amber-900/30", title: "text-amber-100" },
+    slate: { wrap: "border-slate-600 bg-slate-900/70", title: "text-slate-100" },
+    violet: { wrap: "border-violet-500 bg-violet-900/30", title: "text-violet-100" },
   };
   const t = tones[tone] || tones.slate;
 
   return (
     <div className={`rounded-2xl border ${t.wrap} p-5 md:p-6`}>
       <h3 className={`text-lg md:text-xl font-bold mb-3 ${t.title}`}>{title}</h3>
-      <div className="text-slate-700 leading-7 text-sm md:text-base">{children}</div>
+      <div className="text-slate-200 leading-7 text-sm md:text-base">{children}</div>
     </div>
   );
 }
 
 export default function Chapter8Section() {
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8">
+    <div className="max-w-5xl mx-auto px-4 py-8 text-slate-100">
       {/* Header */}
       <header className="mb-6 md:mb-8">
-        <p className="text-xs uppercase tracking-wide text-slate-500">Chapter 08</p>
-        <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">
+        {/* Topic banner */}
+        <div className="mb-4 overflow-hidden rounded-2xl border border-slate-700 bg-slate-900">
+          <img
+            src={eiBanner}
+            alt="Illustration of emotional intelligence and teamwork"
+            className="h-40 w-full object-cover md:h-56"
+          />
+        </div>
+
+        <p className="text-xs uppercase tracking-wide text-slate-400">Chapter 08</p>
+        <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-50">
           Emotional Intelligence (EI)
         </h1>
-        <p className="mt-2 text-slate-600">
+        <p className="mt-2 text-slate-300">
           This lesson explained what emotions are, how the brain handles them, and how emotional
           intelligence helps us in study, work and daily life.
         </p>
@@ -105,8 +115,8 @@ export default function Chapter8Section() {
         <SectionCard tone="amber" title="The emotional brain">
           <ul className="list-disc pl-5 space-y-1 text-sm">
             <li>
-              <span className="font-semibold">Limbic system & amygdala:</span> emotion centre, fast
-              “fight or flight” reactions.
+              <span className="font-semibold">Limbic system &amp; amygdala:</span> emotion centre,
+              fast “fight or flight” reactions.
             </li>
             <li>
               <span className="font-semibold">Prefrontal cortex:</span> the “CEO” of the brain –
@@ -173,7 +183,7 @@ export default function Chapter8Section() {
           </ul>
         </SectionCard>
 
-        <SectionCard tone="amber" title="Gut feelings & decision making">
+        <SectionCard tone="amber" title="Gut feelings &amp; decision making">
           <p className="mb-2 text-sm">
             The brain does a lot of work unconsciously before we “decide”. A gut feeling is often
             the result of these quick emotional calculations.
@@ -199,8 +209,8 @@ export default function Chapter8Section() {
             angry and embarrassed”).
           </li>
           <li>
-            <span className="font-semibold">Breathe & ground</span> – slow breathing, short break,
-            drink water.
+            <span className="font-semibold">Breathe &amp; ground</span> – slow breathing, short
+            break, drink water.
           </li>
           <li>
             <span className="font-semibold">Think</span> – ask: what triggered this? what is the

@@ -3,6 +3,9 @@
 
 import React, { useState } from "react";
 
+// Topic banner
+import foodBanner from "../../assets/food.jpg";
+
 // ---- import your photos (put the files in src/assets/) ----
 // rename paths if your folder differs
 import F1 from "../../assets/F1.jpeg";
@@ -29,8 +32,8 @@ const photos = [
 
 function Chip({ label }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-medium border-emerald-200 bg-emerald-50 text-emerald-900">
-      <span className="h-2 w-2 rounded-full bg-emerald-500" />
+    <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-medium border-emerald-500 bg-emerald-900/60 text-emerald-50">
+      <span className="h-2 w-2 rounded-full bg-emerald-300" />
       {label}
     </span>
   );
@@ -38,16 +41,16 @@ function Chip({ label }) {
 
 function SectionCard({ title, tone = "emerald", children }) {
   const tones = {
-    emerald: { wrap: "border-emerald-200 bg-emerald-50/70", title: "text-emerald-900" },
-    cyan: { wrap: "border-cyan-200 bg-cyan-50/70", title: "text-cyan-900" },
-    amber: { wrap: "border-amber-200 bg-amber-50/70", title: "text-amber-900" },
-    slate: { wrap: "border-slate-200 bg-white", title: "text-slate-900" },
+    emerald: { wrap: "border-emerald-500 bg-emerald-900/30", title: "text-emerald-100" },
+    cyan: { wrap: "border-cyan-500 bg-cyan-900/30", title: "text-cyan-100" },
+    amber: { wrap: "border-amber-500 bg-amber-900/30", title: "text-amber-100" },
+    slate: { wrap: "border-slate-600 bg-slate-900/70", title: "text-slate-100" },
   };
   const t = tones[tone] || tones.slate;
   return (
     <div className={`rounded-2xl border ${t.wrap} p-5 md:p-6`}>
       <h3 className={`text-lg md:text-xl font-bold mb-3 ${t.title}`}>{title}</h3>
-      <div className="text-slate-700 leading-7 text-sm md:text-base">{children}</div>
+      <div className="text-slate-200 leading-7 text-sm md:text-base">{children}</div>
     </div>
   );
 }
@@ -56,19 +59,44 @@ export default function Chapter7Section() {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
 
-  const openLightbox = (i) => { setIndex(i); setOpen(true); };
+  const openLightbox = (i) => {
+    setIndex(i);
+    setOpen(true);
+  };
   const prev = () => setIndex((i) => (i - 1 + photos.length) % photos.length);
   const next = () => setIndex((i) => (i + 1) % photos.length);
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8">
+    <div className="max-w-5xl mx-auto px-4 py-8 text-slate-100">
       {/* Header */}
       <header className="mb-6 md:mb-8">
-        <p className="text-xs uppercase tracking-wide text-slate-500">Chapter 07</p>
-        <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">Food Festival – Ralahami Kadé</h1>
-        <p className="mt-2 text-slate-600">Our team planned and ran a food stall featuring hot dogs, sandwiches and drinks. We practiced event planning, teamwork, money handling, and customer service under time pressure.</p>
+        {/* Topic banner */}
+        <div className="mb-4 overflow-hidden rounded-2xl border border-slate-700 bg-slate-900">
+          <img
+            src={foodBanner}
+            alt="Food festival stall at Ralahami Kadé"
+            className="h-40 w-full object-cover md:h-56"
+          />
+        </div>
+
+        <p className="text-xs uppercase tracking-wide text-slate-400">Chapter 07</p>
+        <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-50">
+          Food Festival – Ralahami Kadé
+        </h1>
+        <p className="mt-2 text-slate-300">
+          Our team planned and ran a food stall featuring hot dogs, sandwiches and drinks. We
+          practiced event planning, teamwork, money handling, and customer service under time
+          pressure.
+        </p>
         <div className="mt-4 flex flex-wrap gap-2">
-          {["Event planning","Menu & pricing","Roles","Crowd handling","Sales","Reflection"].map((c) => (
+          {[
+            "Event planning",
+            "Menu & pricing",
+            "Roles",
+            "Crowd handling",
+            "Sales",
+            "Reflection",
+          ].map((c) => (
             <Chip key={c} label={c} />
           ))}
         </div>
@@ -85,7 +113,7 @@ export default function Chapter7Section() {
         </SectionCard>
         <SectionCard tone="emerald" title="Roles & tasks">
           <ul className="list-disc pl-5 space-y-1">
-            <li>Lead & cash: set prices, track sales, manage change.</li>
+            <li>Lead &amp; cash: set prices, track sales, manage change.</li>
             <li>Food prep: sauces, buns, assembly, packaging.</li>
             <li>Front desk: greeting, taking orders, flow control.</li>
             <li>Logistics: stock, ice, cleaning, photos.</li>
@@ -99,12 +127,18 @@ export default function Chapter7Section() {
           {photos.map((p, i) => (
             <button
               key={i}
-              className="group relative rounded-xl overflow-hidden border border-slate-200 bg-slate-100"
+              className="group relative rounded-xl overflow-hidden border border-slate-700 bg-slate-900/50"
               onClick={() => openLightbox(i)}
               aria-label={`Open image ${i + 1}`}
             >
-              <img src={p.src} alt={p.alt} className="h-40 md:h-48 w-full object-cover" />
-              <span className="absolute inset-0 hidden group-hover:flex items-center justify-center bg-black/30 text-white text-sm">Click to view</span>
+              <img
+                src={p.src}
+                alt={p.alt}
+                className="h-40 md:h-48 w-full object-cover transition-transform duration-200 group-hover:scale-105"
+              />
+              <span className="absolute inset-0 hidden group-hover:flex items-center justify-center bg-black/40 text-white text-sm">
+                Click to view
+              </span>
             </button>
           ))}
         </div>
@@ -112,11 +146,33 @@ export default function Chapter7Section() {
 
       {/* Simple lightbox */}
       {open && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center p-4">
-          <button className="absolute top-4 right-4 text-white text-2xl" onClick={() => setOpen(false)} aria-label="Close">×</button>
-          <button className="absolute left-4 md:left-8 text-white text-2xl" onClick={prev} aria-label="Previous">‹</button>
-          <img src={photos[index].src} alt={photos[index].alt} className="max-h-[80vh] max-w-full rounded-lg" />
-          <button className="absolute right-4 md:right-8 text-white text-2xl" onClick={next} aria-label="Next">›</button>
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+          <button
+            className="absolute top-4 right-4 text-white text-2xl"
+            onClick={() => setOpen(false)}
+            aria-label="Close"
+          >
+            ×
+          </button>
+          <button
+            className="absolute left-4 md:left-8 text-white text-2xl"
+            onClick={prev}
+            aria-label="Previous"
+          >
+            ‹
+          </button>
+          <img
+            src={photos[index].src}
+            alt={photos[index].alt}
+            className="max-h-[80vh] max-w-full rounded-lg shadow-lg"
+          />
+          <button
+            className="absolute right-4 md:right-8 text-white text-2xl"
+            onClick={next}
+            aria-label="Next"
+          >
+            ›
+          </button>
         </div>
       )}
 
@@ -131,19 +187,23 @@ export default function Chapter7Section() {
         </SectionCard>
         <SectionCard title="What to improve next time" tone="amber">
           <ul className="list-disc pl-5 space-y-1">
-            <li>Prepare more change and pre‑slice ingredients.</li>
+            <li>Prepare more change and pre-slice ingredients.</li>
             <li>Better queue management; print menu with prices.</li>
-            <li>Track sales & stock with a small sheet/app.</li>
+            <li>Track sales &amp; stock with a small sheet/app.</li>
           </ul>
         </SectionCard>
       </div>
 
-      {/* Self‑Reflection */}
-      <SectionCard tone="emerald" title="My Self‑Reflection (Chapter 07)">
-        <p>This event taught me real teamwork and customer service. I handled pressure, spoke clearly with customers, and learned to adjust prices/stock on the fly. Next time I will prepare a checklist, set clearer roles, and use a simple tracker for sales and expenses.</p>
+      {/* Self-Reflection */}
+      <SectionCard tone="emerald" title="My Self-Reflection (Chapter 07)">
+        <p>
+          This event taught me real teamwork and customer service. I handled pressure, spoke clearly
+          with customers, and learned to adjust prices/stock on the fly. Next time I will prepare a
+          checklist, set clearer roles, and use a simple tracker for sales and expenses.
+        </p>
       </SectionCard>
     </div>
   );
 }
 
-// Usage: import Chapter7Section from './Chapter7.jsx' and render <Chapter7Section /> where Chapter 07 should appear.
+// Usage: import Chapter7Section from "./Chapter7.jsx" and render <Chapter7Section /> where Chapter 07 should appear.

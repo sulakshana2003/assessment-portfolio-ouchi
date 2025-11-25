@@ -1,7 +1,9 @@
 // src/pages/chapter/Chapter5.jsx
-// Tailwind v2/v3 friendly. Simple English. Pulls key ideas from your "Speaking Skills – meetings" + "Group Activity Worksheet" handouts.
+// Tailwind v2/v3 friendly. Simple English. Pulls key ideas from your
+// "Speaking Skills – meetings" + "Group Activity Worksheet" handouts.
 
 import React from "react";
+import meetingBanner from "../../assets/meet.jpg";
 
 const chips = [
   "Meeting types",
@@ -16,8 +18,8 @@ const chips = [
 
 function Chip({ label }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-medium border-emerald-200 bg-emerald-50 text-emerald-900">
-      <span className="h-2 w-2 rounded-full bg-emerald-500" />
+    <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-medium border-emerald-500 bg-emerald-900/60 text-emerald-50">
+      <span className="h-2 w-2 rounded-full bg-emerald-300" />
       {label}
     </span>
   );
@@ -25,29 +27,42 @@ function Chip({ label }) {
 
 function SectionCard({ title, tone = "emerald", children }) {
   const tones = {
-    emerald: { wrap: "border-emerald-200 bg-emerald-50/70", title: "text-emerald-900" },
-    cyan: { wrap: "border-cyan-200 bg-cyan-50/70", title: "text-cyan-900" },
-    amber: { wrap: "border-amber-200 bg-amber-50/70", title: "text-amber-900" },
-    slate: { wrap: "border-slate-200 bg-white", title: "text-slate-900" },
-    violet: { wrap: "border-violet-200 bg-violet-50/70", title: "text-violet-900" },
+    emerald: { wrap: "border-emerald-500 bg-emerald-900/30", title: "text-emerald-100" },
+    cyan: { wrap: "border-cyan-500 bg-cyan-900/30", title: "text-cyan-100" },
+    amber: { wrap: "border-amber-500 bg-amber-900/30", title: "text-amber-100" },
+    slate: { wrap: "border-slate-600 bg-slate-900/70", title: "text-slate-100" },
+    violet: { wrap: "border-violet-500 bg-violet-900/30", title: "text-violet-100" },
   };
   const t = tones[tone] || tones.slate;
   return (
     <div className={`rounded-2xl border ${t.wrap} p-5 md:p-6`}>
       <h3 className={`text-lg md:text-xl font-bold mb-3 ${t.title}`}>{title}</h3>
-      <div className="text-slate-700 leading-7 text-sm md:text-base">{children}</div>
+      <div className="text-slate-200 leading-7 text-sm md:text-base">{children}</div>
     </div>
   );
 }
 
 export default function Chapter5Section() {
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8">
+    <div className="max-w-5xl mx-auto px-4 py-8 text-slate-100">
       {/* Header */}
       <header className="mb-6 md:mb-8">
-        <p className="text-xs uppercase tracking-wide text-slate-500">Chapter 05</p>
-        <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">Meetings & Speaking Skills</h1>
-        <p className="mt-2 text-slate-600">Plan, run, and participate in meetings with clear language, good roles, and focused agendas.</p>
+        {/* Topic banner */}
+        <div className="mb-4 overflow-hidden rounded-2xl border border-slate-700 bg-slate-900">
+          <img
+            src={meetingBanner}
+            alt="People in a meeting and conversation workshop"
+            className="h-40 w-full object-cover md:h-56"
+          />
+        </div>
+
+        <p className="text-xs uppercase tracking-wide text-slate-400">Chapter 05</p>
+        <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-50">
+          Meetings &amp; Speaking Skills
+        </h1>
+        <p className="mt-2 text-slate-300">
+          Plan, run, and participate in meetings with clear language, good roles, and focused agendas.
+        </p>
         <div className="mt-4 flex flex-wrap gap-2">
           {chips.map((c) => (
             <Chip key={c} label={c} />
@@ -59,17 +74,25 @@ export default function Chapter5Section() {
       <div className="grid md:grid-cols-2 gap-4 mb-6">
         <SectionCard tone="cyan" title="Meeting terminology (quick)">
           <ul className="list-disc pl-5 space-y-1">
-            <li><span className="font-semibold">Agenda</span> – list of topics and timing.</li>
-            <li><span className="font-semibold">Minutes</span> – written record of decisions and actions.</li>
-            <li><span className="font-semibold">Action item</span> – task with owner and due date.</li>
-            <li><span className="font-semibold">Quorum</span> – minimum people needed to make decisions.</li>
+            <li>
+              <span className="font-semibold">Agenda</span> – list of topics and timing.
+            </li>
+            <li>
+              <span className="font-semibold">Minutes</span> – written record of decisions and actions.
+            </li>
+            <li>
+              <span className="font-semibold">Action item</span> – task with owner and due date.
+            </li>
+            <li>
+              <span className="font-semibold">Quorum</span> – minimum people needed to make decisions.
+            </li>
           </ul>
         </SectionCard>
         <SectionCard tone="emerald" title="Types of meetings (examples)">
           <ul className="list-disc pl-5 space-y-1">
-            <li>Stand‑up / progress update</li>
+            <li>Stand-up / progress update</li>
             <li>Planning / strategy</li>
-            <li>Problem‑solving / retrospective</li>
+            <li>Problem-solving / retrospective</li>
             <li>Training / briefing</li>
           </ul>
         </SectionCard>
@@ -92,7 +115,7 @@ export default function Chapter5Section() {
         <SectionCard title="Common roles in a meeting" tone="slate">
           <ul className="list-disc pl-5 space-y-1">
             <li>Chair/Facilitator – keeps focus, manages time, invites voices.</li>
-            <li>Secretary/Minute‑taker – records decisions and actions.</li>
+            <li>Secretary/Minute-taker – records decisions and actions.</li>
             <li>Timekeeper – tracks timings on the agenda.</li>
             <li>Participants – contribute ideas, stay on topic, own actions.</li>
             <li>Observer (optional) – gives feedback on process.</li>
@@ -100,12 +123,12 @@ export default function Chapter5Section() {
         </SectionCard>
         <SectionCard title="Sample agenda: project progress" tone="emerald">
           <ol className="list-decimal pl-5 space-y-1">
-            <li>Welcome & objectives (2 min)</li>
+            <li>Welcome &amp; objectives (2 min)</li>
             <li>Since last meeting: actions closed/open (5 min)</li>
             <li>Team updates: Dev · QA · Design (10 min)</li>
-            <li>Risks & blockers (5 min)</li>
-            <li>Decisions & new actions (5 min)</li>
-            <li>Next steps & date (3 min)</li>
+            <li>Risks &amp; blockers (5 min)</li>
+            <li>Decisions &amp; new actions (5 min)</li>
+            <li>Next steps &amp; date (3 min)</li>
           </ol>
         </SectionCard>
       </div>
@@ -114,14 +137,16 @@ export default function Chapter5Section() {
       <div className="grid md:grid-cols-2 gap-4 my-6">
         <SectionCard title="Facilitation – keep people engaged" tone="violet">
           <ul className="list-disc pl-5 space-y-1">
-            <li>Set clear objective and timeboxes; park off‑topic items.</li>
+            <li>Set clear objective and timeboxes; park off-topic items.</li>
             <li>Invite quieter members; rotate who speaks.</li>
             <li>Summarize often; confirm decisions and owners.</li>
           </ul>
         </SectionCard>
         <SectionCard title="Speaking skills in meetings" tone="emerald">
           <ul className="list-disc pl-5 space-y-1">
-            <li>Be clear and concise; use polite phrases ("Could I add…", "I agree because…").</li>
+            <li>
+              Be clear and concise; use polite phrases ("Could I add…", "I agree because…").
+            </li>
             <li>Active listening: pay attention, paraphrase, ask clarifying questions.</li>
             <li>Use neutral, professional tone; avoid interrupting.</li>
           </ul>
@@ -131,9 +156,18 @@ export default function Chapter5Section() {
       {/* Challenges & fixes */}
       <SectionCard tone="cyan" title="Common challenges → fixes">
         <ul className="list-disc pl-5 space-y-1">
-          <li><span className="font-semibold">Low participation</span> → round‑robin sharing; direct gentle invites.</li>
-          <li><span className="font-semibold">Time overruns</span> → strict timekeeper; parking lot for later.</li>
-          <li><span className="font-semibold">Off‑topic debates</span> → restate objective; summarize and move.</li>
+          <li>
+            <span className="font-semibold">Low participation</span> → round-robin sharing; direct
+            gentle invites.
+          </li>
+          <li>
+            <span className="font-semibold">Time overruns</span> → strict timekeeper; parking lot
+            for later.
+          </li>
+          <li>
+            <span className="font-semibold">Off-topic debates</span> → restate objective; summarize
+            and move.
+          </li>
         </ul>
       </SectionCard>
 
@@ -153,7 +187,7 @@ export default function Chapter5Section() {
           <ol className="list-decimal pl-5 space-y-1 text-sm">
             <li>List 3–4 meeting types and 2 objectives for each.</li>
             <li>Pick roles for your group and write responsibilities.</li>
-            <li>Create a 6‑item agenda for a progress meeting.</li>
+            <li>Create a 6-item agenda for a progress meeting.</li>
           </ol>
         </SectionCard>
         <SectionCard title="Facilitation & challenges" tone="amber">
@@ -165,12 +199,16 @@ export default function Chapter5Section() {
         </SectionCard>
       </div>
 
-      {/* Self‑Reflection */}
-      <SectionCard tone="emerald" title="My Self‑Reflection (Chapter 05)">
-        <p>I practiced how to plan a meeting and speak clearly. Next time I will prepare a short agenda, invite quieter members, and end with actions and owners. I will also use a quick evaluation form to improve our meetings.</p>
+      {/* Self-Reflection */}
+      <SectionCard tone="emerald" title="My Self-Reflection (Chapter 05)">
+        <p>
+          I practiced how to plan a meeting and speak clearly. Next time I will prepare a short
+          agenda, invite quieter members, and end with actions and owners. I will also use a quick
+          evaluation form to improve our meetings.
+        </p>
       </SectionCard>
     </div>
   );
 }
 
-// Usage: import Chapter5Section from './Chapter5.jsx' and render <Chapter5Section /> where Chapter 05 should appear.
+// Usage: import Chapter5Section from "./Chapter5.jsx" and render <Chapter5Section /> where Chapter 05 should appear.

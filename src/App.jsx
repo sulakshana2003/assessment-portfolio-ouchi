@@ -16,16 +16,16 @@ export default function AssessmentPortfolio() {
   const chapters = useMemo(
     () => [
       { id: "ch1", title: "Introduction to Professional Skills", body: sampleIntro },
-      { id: "ch2", title: "Teamwork & Collaboration", body: "" },
-      { id: "ch3", title: "Communication Skills", body: "" },
-      { id: "ch4", title: "Leadership & Ethics", body: "" },
-      { id: "ch5", title: "Problem Solving", body: "" },
-      { id: "ch6", title: "Time Management", body: "" },
-      { id: "ch7", title: "Emotional Intelligence", body: "" },
-      { id: "ch8", title: "Interview Prep", body: "" },
-      { id: "ch9", title: "CV & Cover Letter", body: "" },
-      { id: "ch10", title: "Dining & Business Etiquette", body: "" },
-      { id: "ch11", title: "Research Writing", body: "" },
+      { id: "ch2", title: "CV & Cover Letter Writing", body: "" },
+      { id: "ch3", title: "Job Hunting & Interview Skills", body: "" },
+      { id: "ch4", title: "Portfolio Management", body: "" },
+      { id: "ch5", title: "Meetings & Speaking Skills", body: "" },
+      { id: "ch6", title: "Project Proposal Writing & Evaluation", body: "" },
+      { id: "ch7", title: "Food Festival – Ralahami Kadé", body: "" },
+      { id: "ch8", title: "Emotional Intelligence", body: "" },
+      { id: "ch9", title: "Dining Etiquette & Table Manners", body: "" },
+      //{ id: "ch10", title: "Dining & Business Etiquette", body: "" },
+      //{ id: "ch11", title: "Research Writing", body: "" },
     ],
     []
   );
@@ -62,8 +62,8 @@ export default function AssessmentPortfolio() {
       case "ch7": return <Chapter7Section />;
       case "ch8": return <Chapter8Section />;
       case "ch9": return <Chapter9Section />;
-      case "ch10": return <Chapter10Section />;
-      case "ch11": return <Chapter11Section />;
+      //case "ch10": return <Chapter10Section />;
+      //case "ch11": return <Chapter11Section />;
       default: return null;
     }
   };
@@ -144,9 +144,9 @@ export default function AssessmentPortfolio() {
             >
               <div className="flex flex-col md:flex-row md:justify-between md:space-x-6 space-y-4 md:space-y-0">
                 <div className="md:flex-1">
-                  <h2 className="text-3xl font-extrabold bg-gradient-to-r from-indigo-300 via-indigo-200 to-sky-200 bg-clip-text text-transparent mb-2">
+                  {/*<h2 className="text-3xl font-extrabold bg-gradient-to-r from-indigo-300 via-indigo-200 to-sky-200 bg-clip-text text-transparent mb-2">
                     {c.title}
-                  </h2>
+                  </h2>*/}
                 </div>
               </div>
 
